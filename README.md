@@ -1,7 +1,7 @@
 # CustomerService — 智能电商客服 Agent
 
 基于 LangChain 1.2 构建的智能电商客服系统，集成 RAG 知识库检索、工具调用、中间件日志、会话记忆管理，支持通过 WebSocket 进行实时对话。
-
+可直接嵌入项目
 ---
 
 ## 技术栈
