@@ -167,3 +167,7 @@ npm run dev
 ```
 VITE_WS_URL=ws://localhost:8000
 ```
+---
+<img width="1920" height="914" alt="SS_2026-08-04_125653_968" src="https://github.com/user-attachments/assets/a7eb05bc-ef49-426f-83df-3eacf5bba138" />
+
+---
