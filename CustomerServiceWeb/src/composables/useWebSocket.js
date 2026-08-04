@@ -1,5 +1,19 @@
 import { ref } from 'vue'
 
+/**
+ * 获取后端 WebSocket 基础地址。
+ * 优先使用 Vite 环境变量，否则回退到相对路径（通过 Vite proxy 转发）。
+ */
+function getWsBaseUrl() {
+  const envUrl = import.meta.env.VITE_WS_URL
+  if (envUrl) {
+    return envUrl
+  }
+  // 通过 Vite proxy 转发（开发环境）
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+  return `${protocol}//${window.location.host}`
+}
+
 export function useWebSocket(sessionId) {
   let ws = null
   let reconnectTimer = null
@@ -33,7 +47,8 @@ export function useWebSocket(sessionId) {
       return
     }
 
-    const url = `ws://localhost:8000/ws?session_id=${sessionId.value}`
+    const baseUrl = getWsBaseUrl()
+    const url = `${baseUrl}/ws?session_id=${sessionId.value}`
     ws = new WebSocket(url)
 
     ws.onopen = () => {

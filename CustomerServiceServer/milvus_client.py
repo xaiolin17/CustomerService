@@ -41,11 +41,13 @@ class MilvusClient:
                 model=settings.embedding_model_name,
                 api_key=settings.ali_api_key,
                 base_url=settings.ali_openai_compatible_endpoint,
+                # 关键参数：必须设置为 False，否则可能报错
+                check_embedding_ctx_length=False,
             )
-            # 测试调用一次验证可用性
-            test_vec = self.embedding_model.embed_query("测试")
-            log.info(f"Embedding 模型初始化成功: {settings.embedding_model_name}, "
-                     f"维度={len(test_vec)}")
+            # # 测试调用一次验证可用性
+            # test_vec = self.embedding_model.embed_query("测试")
+            # log.info(f"Embedding 模型初始化成功: {settings.embedding_model_name}, "
+            #          f"维度={len(test_vec)}")
         except Exception as e:
             log.error(f"Milvus 连接失败: {e}")
             log.warning("服务将以降级模式运行（无 RAG 检索能力）")

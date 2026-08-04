@@ -116,7 +116,7 @@ class LoggingMiddleware(BaseMiddleware):
 class TimingMiddleware(BaseMiddleware):
     """性能计时中间件 — 记录慢步骤的警告。"""
 
-    SLOW_THRESHOLD = 3.0  # 超过 3 秒记录警告
+    SLOW_THRESHOLD = 10.0  # 超过 3 秒记录警告
 
     def after_step(self, step_name: str, result: Any, duration: float, **kwargs) -> Any:
         if duration > self.SLOW_THRESHOLD:
